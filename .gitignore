@@ -19,5 +19,7 @@ AGENTS.md
 # Experimental code/artifacts
 dev/
 
-# Results file
+# Auto-research artifacts
 results.tsv
+run.log
+queue.md
