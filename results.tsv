@@ -1,0 +1,14 @@
+commit	metric	status	description
+fa114ea	1.224478	baseline	BASELINE — unmodified code, DEPTH=4, 11.5M params, 300s training
+0c35c17	1.239497	discard	DEPTH=6, 26.3M params, 807 steps, 300s training
+f8afe8f	1.234348	discard	Replace ReluSquared with GELU activation in MLP
+46156a7	1.221740	keep	Add 10% warmup ratio (WARMUP_RATIO 0.0 -> 0.1)
+9175e7e	1.229999	discard	ASPECT_RATIO 64->96, wider model (384 dim, 3 heads, 19.7M params, 1124 steps)
+1f905a5	1.226090	discard	Replace ReluSquared with SwiGLU activation (gate + silu), 12.6M params, 1616 steps
+a077a2f	1.221713	keep	Reduce warmup from 10% to 5% (WARMUP_RATIO 0.1 -> 0.05), 1841 steps, 300s training
+3beb21d	1.279399	discard	Increase TOTAL_BATCH_SIZE 2**16->2**17 (131K tokens/step), 934 steps, 300s training
+4a99445	1.226422	discard	Reduce WARMDOWN_RATIO from 0.5 to 0.3, more time at peak LR, 1840 steps, 300s training
+9f8fcad	1.231137	discard	Reduce HEAD_DIM 128->64, 4 attention heads instead of 2, 11.5M params, 1830 steps, 300s training
+c22d674	1.247601	discard	Remove value embeddings entirely, 7.3M params, 1872 steps, 300s training
+b3fbfe1	1.186887	keep	Reduce TOTAL_BATCH_SIZE 2**16->2**15 (32K tokens/step), grad_accum 2->1, 3615 steps, 300s training
+36d4e77	1.206430	pending	Reduce TOTAL_BATCH_SIZE 2**15->2**14 (16K tokens/step), DEVICE_BATCH_SIZE 16->8, grad_accum=1, 7124 steps, 300s training
