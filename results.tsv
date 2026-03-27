@@ -1,0 +1,46 @@
+commit	metric	status	description
+fa114ea	1.222560	baseline	BASELINE — unmodified code
+6aa45f4	1.229945	discard	Increase MATRIX_LR from 0.04 to 0.05
+3ec227f	1.220954	keep	Add LR warmup WARMUP_RATIO=0.05
+43373d6	1.220425	keep	Increase WARMDOWN_RATIO from 0.5 to 0.6 and FINAL_LR_FRAC from 0.0 to 0.05
+196a171	1.225149	discard	Replace ReLU² with SwiGLU gated activation in MLP
+399e6e0	1.217175	keep	Set WINDOW_PATTERN=SSSL (3 sliding-window + 1 full attention)
+d6bee1d	1.214295	keep	Decrease MATRIX_LR from 0.04 to 0.03
+c231b22	1.217966	discard	Increase logit softcap from 15 to 30
+d907481	1.215356	discard	Increase EMBEDDING_LR from 0.6 to 0.8
+1f122dd	1.214942	discard	Change WINDOW_PATTERN from SSSL to SSL (S,S,L,L pattern)
+7e4a78a	1.215662	discard	Decrease MATRIX_LR from 0.03 to 0.02
+63472af	1.179972	keep	Halve TOTAL_BATCH_SIZE from 2**16 to 2**15 for more optimizer steps
+4d1f604	1.176485	keep	Halve WEIGHT_DECAY from 0.2 to 0.1
+a2a8125	1.177711	discard	Set ADAM_BETAS=(0.9, 0.95) — increase beta1 from 0.8 to 0.9
+d2e6fb0	1.162423	keep	Set ASPECT_RATIO=96 for wider model (384 dim, 3 heads) at DEPTH=4
+53032cd	1.173630	discard	Halve TOTAL_BATCH_SIZE to 2**14 and DEVICE_BATCH_SIZE to 8 for more optimizer steps
+2bc09ea	1.161688	keep	Set EMBEDDING_LR=0.3 (lower from 0.6) for stability with wider 384-dim model
+90e7902	1.161599	keep	Halve WEIGHT_DECAY from 0.1 to 0.05
+7d89c9e	1.170179	discard	Set ASPECT_RATIO=128 for wider model (dim=512, 4 heads) at DEPTH=4
+ea8d6db	1.169467	discard	Set DEPTH=6 ASPECT_RATIO=64 — deeper model (6 layers) at same hidden dim (384)
+1258f9f	1.183893	discard	Remove value embeddings entirely to save compute and get more training steps
+8c14511	1.162279	discard	Set WARMDOWN_RATIO=0.7 for longer cosine decay phase
+6048700	1.168018	discard	Set DEPTH=5 ASPECT_RATIO=76 — 5 layers at same 384 hidden dim (3 heads)
+21ab204	1.166131	discard	Set HEAD_DIM=64 to double attention heads from 3 to 6 at same 384 model dim
+734dc48	1.163472	discard	Replace linear LR warmdown with cosine schedule for smoother convergence
+8e21cc2	2.819811	discard	Tie wte and lm_head weights to share embedding/unembedding parameters
+faa8e7b	1.165570	discard	Increase MLP expansion from 4x to 6x for more MLP capacity
+c501a16	1.168567	discard	Reduce Muon ns_steps from 5 to 3 for faster optimizer steps
+0c61846	1.484851	discard	Add label_smoothing=0.1 to cross_entropy loss for regularization
+f5be33c	1.167355	discard	Set DEPTH=3 ASPECT_RATIO=170 — shallow-wide model (3 layers, dim=512, 4 heads)
+a811db1	1.162751	discard	Add gradient clipping with max_norm=1.0 before optimizer.step()
+bf90c5d	1.161752	discard	Set WARMUP_RATIO=0.02 WARMDOWN_RATIO=0.65 for rebalanced LR schedule
+1f07d4e	1.166471	discard	Add z-loss regularization (1e-4) to penalize large logit magnitudes
+0afd31c	1.162636	discard	Set UNEMBEDDING_LR=0.008 (double from 0.004) for faster lm_head learning
+2eff4d3	1.165193	discard	Enable value embeddings on ALL layers instead of alternating
+6d31f66	1.162082	discard	Set MATRIX_LR=0.035 — bisect between 0.03 (best) and 0.04 (baseline)
+c42e215	1.163629	discard	Set EMBEDDING_LR=0.2 (down from 0.3) for lower embedding and value embedding LR
+22990c3	1.162118	discard	Set WEIGHT_DECAY=0.03 (down from 0.05) to continue weight decay reduction trend
+f642eb0	1.163535	discard	Set ADAM_BETAS=(0.8, 0.99) — increase beta2 from 0.95 to 0.99 for more stable second moment estimates
+40e5e47	1.167813	discard	Remove logit softcap entirely from forward pass
+050f976	1.161304	keep	Set logit softcap=10 (down from 15) for tighter logit capping regularization
+9e2a9d8	1.172542	discard	Set n_kv_head=1 for GQA with single shared KV head across 3 query heads
+486e5e6	1.166187	discard	Increase Muon final momentum from 0.95 to 0.98 in get_muon_momentum warmup
+321b600	1.185658	discard	Remove QK normalization from attention forward pass
+f507211	1.163265	discard	Set logit softcap=8 (down from 10) for tighter capping regularization
